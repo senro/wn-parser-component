@@ -1,0 +1,23 @@
+{
+  "name": "wn-parser-component",
+  "version": "0.0.1",
+  "description": "parse wn custom label",
+  "author": "snail-team <passtome@foxmail.com>",
+  "main": "index.js",
+  "homepage":"https://github.com/snail-team/wn-parser-component/",
+  "repository": {
+     "type": "git",
+     "url": "git@github.com:snail-team/wn-parser-component.git"
+  },
+  "bugs": {
+    "url": "https://github.com/snail-team/wn-parser-component/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wn",
+    "wn-parser-component"
+  ],
+  "license": "MIT"
+}
