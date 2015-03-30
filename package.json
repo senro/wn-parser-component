@@ -1,6 +1,6 @@
 {
   "name": "wn-parser-component",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "parse wn custom label",
   "author": "snail-team <passtome@foxmail.com>",
   "main": "index.js",

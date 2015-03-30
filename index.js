@@ -15,7 +15,6 @@ module.exports = function(content, file, conf){
     if(file.rExt=='.html'&&componentLabels){
         mainJs=parseTplMainJs(content,file);
     }
-
     if(componentLabels){
         for(var i=0;i<componentLabels.length;i++){
             var componentLabel=componentLabels[i];//<!--component("menu")-->
@@ -34,6 +33,7 @@ module.exports = function(content, file, conf){
             requires.push(parseComponentName(requireLabel));
         }
         file.requires=file.requires.concat(requires);
+
     }
 
     function componentLabelReg(name){
@@ -64,11 +64,11 @@ module.exports = function(content, file, conf){
          * 分析带有data-main属性的标签，如：<script type="text/javascript" data-main='true' src="static/index/index.js"></script>
          * 如果该标签里有src则返回src，如果没有则返回‘self’
          * */
-        var dataMainScript=content.match(/\<script[^\<\>]*data-main(.)*\>(.)*\<\/script\>/g);
+        var dataMainScript=content.match(/\<script[^\<\>]*data-main(.)*\>(.|\n|\r)*\<\/script\>/g);
 
         if(dataMainScript){
-            dataMainScript=content.match(/\<script[^\<\>]*data-main(.)*\>(.)*\<\/script\>/g)[0];
-            if(/src/g.test(dataMainScript)){
+            dataMainScript=content.match(/\<script[^\<\>]*data-main(.)*\>(.|\n|\r)*\<\/script\>/g)[0];
+            if(/src\=/g.test(dataMainScript)){
                 //如果有src属性，说明是从外部文件引用，找到该文件，进行__COMPONENT_INIT__替换
                 var src=normalizeSrc(parseSrc(dataMainScript.match(/src=(\'|\")(.)*(\'|\")/g)[0]));
                 //可能是相对路径，也可能是绝对路径，根据目前目录结构规范，可以简单的将相对路径的..去掉即可得到绝对路径，todo
